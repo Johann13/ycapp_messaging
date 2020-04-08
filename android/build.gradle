@@ -1,0 +1,39 @@
+group 'com.feser.ycappmessaging'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    implementation 'com.google.firebase:firebase-messaging:20.1.5'
+    implementation 'androidx.work:work-runtime:2.3.4'
+    implementation 'com.google.code.gson:gson:2.8.6'
+}
