@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:ycapp_foundation/prefs/prefs.dart';
-import 'package:ycappmessaging/ycapp_messaging_platform.dart';
+import 'package:ycapp_messaging/ycapp_messaging_platform.dart';
 
 class YMessaging {
 
@@ -21,10 +21,6 @@ class YMessaging {
 
   static Future<dynamic> enableFCM(bool enable) async {
     return YMessagingPlatform.instance.enableFCM(enable);
-  }
-
-  static Future<dynamic> enableAnalytics(bool enable) async {
-    return YMessagingPlatform.instance.enableAnalytics(enable);
   }
 
   static Future<void> subscribeAll() async {

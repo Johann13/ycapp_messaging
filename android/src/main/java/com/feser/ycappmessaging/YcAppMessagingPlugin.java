@@ -90,13 +90,6 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
                     result.success("No Token");
                 }
                 break;
-            case "enableAnalytics":
-                                /*
-                                boolean enableAnalytics = (boolean) methodCall.argument("enable");
-                                FirebaseAnalytics.getInstance(getApplicationContext())
-                                        .setAnalyticsCollectionEnabled(enableAnalytics);*/
-                result.success(true);
-                break;
             case "getToken":
                 //result.success(FirebaseInstanceId.getInstance().getId());
                 boolean b = prefs.getBool("fcmPermission", false);

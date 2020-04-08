@@ -1,5 +1,5 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:ycappmessaging/method_channel_ycapp_messaging.dart';
+import 'package:ycapp_messaging/method_channel_ycapp_messaging.dart';
 
 abstract class YMessagingPlatform extends PlatformInterface {
   YMessagingPlatform() : super(token: _token);
@@ -26,10 +26,6 @@ abstract class YMessagingPlatform extends PlatformInterface {
   }
 
   Future<dynamic> enableFCM(bool enable) {
-    throw UnimplementedError('');
-  }
-
-  Future<dynamic> enableAnalytics(bool enable) {
     throw UnimplementedError('');
   }
 

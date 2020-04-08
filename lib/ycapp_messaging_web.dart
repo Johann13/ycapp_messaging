@@ -4,7 +4,7 @@ import 'package:firebase/firebase.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:http/http.dart' as http;
 import 'package:ycapp_foundation/prefs/prefs.dart';
-import 'package:ycappmessaging/ycapp_messaging_platform.dart';
+import 'package:ycapp_messaging/ycapp_messaging_platform.dart';
 
 class YMessagingWebPlugin extends YMessagingPlatform {
   final Messaging _msg = messaging();
@@ -36,10 +36,6 @@ class YMessagingWebPlugin extends YMessagingPlatform {
 
   Future<dynamic> enableFCM(bool enable) {
     throw UnimplementedError('enableFCM');
-  }
-
-  Future<dynamic> enableAnalytics(bool enable) {
-    throw UnimplementedError('enableAnalytics');
   }
 
   Future<void> subscribeAll() async {

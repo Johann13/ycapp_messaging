@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  ycappmessaging:
+  ycapp_messaging:
     path: ../
 
   # The following adds the Cupertino Icons font to your application.

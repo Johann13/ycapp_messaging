@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:ycapp_foundation/prefs/prefs.dart';
-import 'package:ycappmessaging/ycapp_messaging_platform.dart';
+import 'package:ycapp_messaging/ycapp_messaging_platform.dart';
 
 class MethodChannelYMessaging extends YMessagingPlatform {
   static const MethodChannel _channel = const MethodChannel('ycappmessaging');
@@ -22,15 +22,6 @@ class MethodChannelYMessaging extends YMessagingPlatform {
   Future<dynamic> enableFCM(bool enable) async {
     return _channel.invokeMethod(
       'enableFCM',
-      <String, dynamic>{
-        'enable': enable,
-      },
-    );
-  }
-
-  Future<dynamic> enableAnalytics(bool enable) {
-    return _channel.invokeMethod(
-      'enableAnalytics',
       <String, dynamic>{
         'enable': enable,
       },
