@@ -1,12 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-import 'package:ycapp_foundation/prefs/prefs.dart';
 import 'package:ycapp_messaging/ycapp_messaging_platform.dart';
 
 class YMessaging {
-
   static Future<String> getToken() async {
     return YMessagingPlatform.instance.getToken();
   }
@@ -26,5 +22,4 @@ class YMessaging {
   static Future<void> subscribeAll() async {
     return YMessagingPlatform.instance.subscribeAll();
   }
-
 }
