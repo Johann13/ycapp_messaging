@@ -69,10 +69,6 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
     @Override
     public void onMethodCall(@NonNull MethodCall methodCall, @NonNull final Result result) {
         switch (methodCall.method) {
-            case "user":
-                UserWorker.enqueue(activity);
-                result.success(null);
-                break;
             case "subscribeAll":
                 SubscribeAllWorker.enqueue(activity);
                 result.success(null);

@@ -32,12 +32,4 @@ abstract class YMessagingPlatform extends PlatformInterface {
   Future<void> subscribeAll() {
     throw UnimplementedError('');
   }
-
-  Future<void> user() {
-    throw UnimplementedError('');
-  }
-
-  Future<void> logUserSub(int hours) {
-    throw UnimplementedError('');
-  }
 }

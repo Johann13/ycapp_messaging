@@ -31,20 +31,4 @@ class MethodChannelYMessaging extends YMessagingPlatform {
   Future<void> subscribeAll() {
     return _channel.invokeMethod('subscribeAll');
   }
-
-  Future<void> user() {
-    return _channel.invokeMethod('user');
-  }
-
-  Future<void> logUserSub(int hours) async {
-    int lastUserLog = await Prefs.getInt('lastUserLog',
-        DateTime.now().subtract(Duration(days: 7)).millisecondsSinceEpoch);
-    DateTime now = DateTime.now();
-    DateTime lastLogDate = DateTime.fromMillisecondsSinceEpoch(lastUserLog);
-    Duration duration = now.difference(lastLogDate);
-    if (duration.inHours >= hours) {
-      await user();
-      await Prefs.setInt('lastUserLog', now.millisecondsSinceEpoch);
-    }
-  }
 }

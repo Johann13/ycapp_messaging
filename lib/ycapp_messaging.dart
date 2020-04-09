@@ -27,11 +27,4 @@ class YMessaging {
     return YMessagingPlatform.instance.subscribeAll();
   }
 
-  static Future<void> user() async {
-    return YMessagingPlatform.instance.user();
-  }
-
-  static Future<void> logUserSub(int hours) async {
-    return YMessagingPlatform.instance.logUserSub(hours);
-  }
 }
