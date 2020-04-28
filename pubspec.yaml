@@ -21,7 +21,6 @@ dependencies:
   ycapp_foundation:
     git:
       url: git://github.com/Johann13/ycapp_foundation.git
-      ref: package_to_plugin
 
 dev_dependencies:
   flutter_test:
