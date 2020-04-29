@@ -31,6 +31,7 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
     private MethodChannel channel;
     private Prefs prefs;
     private Activity activity;
+    private final String TAG = "YcAppMessagingPlugin";
 
     public YcAppMessagingPlugin(Activity activity) {
         this.activity = activity;
@@ -70,11 +71,13 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
     public void onMethodCall(@NonNull MethodCall methodCall, @NonNull final Result result) {
         switch (methodCall.method) {
             case "subscribeAll":
+                Log.d(TAG, "subscribeAll");
                 SubscribeAllWorker.enqueue(activity);
                 result.success(null);
                 break;
             case "enableFCM":
                 boolean enableFCM = (boolean) methodCall.argument("enable");
+                Log.d(TAG, "enableFCM: " + enableFCM);
                 FirebaseMessaging.getInstance()
                         .setAutoInitEnabled(enableFCM);
                 if (enableFCM) {
@@ -87,6 +90,7 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
                 }
                 break;
             case "getToken":
+                Log.d(TAG, "getToken");
                 //result.success(FirebaseInstanceId.getInstance().getId());
                 boolean b = prefs.getBool("fcmPermission", false);
                 if (b) {
@@ -110,6 +114,7 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
                 }
                 break;
             case "getId":
+                Log.d(TAG, "getId");
                 FirebaseInstanceId.getInstance().getInstanceId()
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -125,9 +130,11 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
                                 result.success(instanceIdResult.getId());
                             }
                         });
+
                 break;
             case "subscribeToTopic":
                 String subTopic = methodCall.argument("channelId");
+                Log.d(TAG, "subscribeToTopic: " + subTopic);
                 if (subTopic != null) {
                     FirebaseMessaging.getInstance()
                             .subscribeToTopic(subTopic);
@@ -138,6 +145,7 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
                 break;
             case "unsubscribeFromTopic":
                 String unSubTopic = methodCall.argument("channelId");
+                Log.d(TAG, "unsubscribeFromTopic: " + unSubTopic);
                 if (unSubTopic != null) {
                     FirebaseMessaging.getInstance()
                             .unsubscribeFromTopic(unSubTopic);
