@@ -11,12 +11,12 @@ class MethodChannelYMessaging extends YMessagingPlatform {
 
   Future<dynamic> subscribeToTopic(String _channelId) {
     return _channel.invokeMethod(
-        'subscribeToTopic', <String, dynamic>{'_channelId': _channelId});
+        'subscribeToTopic', <String, dynamic>{'channelId': _channelId});
   }
 
   Future<dynamic> unsubscribeFromTopic(String _channelId) {
     return _channel.invokeMethod(
-        'unsubscribeFromTopic', <String, dynamic>{'_channelId': _channelId});
+        'unsubscribeFromTopic', <String, dynamic>{'channelId': _channelId});
   }
 
   Future<dynamic> enableFCM(bool enable) async {
