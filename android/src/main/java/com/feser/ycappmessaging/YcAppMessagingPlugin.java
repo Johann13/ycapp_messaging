@@ -37,7 +37,7 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
     private static void setup(YcAppMessagingPlugin plugin, @NonNull FlutterPluginBinding flutterPluginBinding) {
         plugin.channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "ycappmessaging");
         plugin.channel.setMethodCallHandler(plugin);
-        plugin.context = flutterPluginBinding.getApplicationContext()
+        plugin.context = flutterPluginBinding.getApplicationContext();
         if (plugin.prefs == null) {
             plugin.prefs = new Prefs(plugin.context);
         } else {
