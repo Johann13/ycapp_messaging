@@ -1,6 +1,7 @@
 package com.feser.ycappmessaging;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
@@ -30,41 +31,23 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
     /// when the Flutter Engine is detached from the Activity
     private MethodChannel channel;
     private Prefs prefs;
-    private Activity activity;
+    private Context activity;
     private final String TAG = "YcAppMessagingPlugin";
 
-    public YcAppMessagingPlugin(Activity activity) {
-        this.activity = activity;
-        if (prefs == null) {
-            this.prefs = new Prefs(activity);
+
+    private static void setup(YcAppMessagingPlugin plugin, @NonNull FlutterPluginBinding flutterPluginBinding) {
+        plugin.channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "ycappmessaging");
+        plugin.channel.setMethodCallHandler(plugin);
+        if (plugin.prefs == null) {
+            plugin.prefs = new Prefs(flutterPluginBinding.getApplicationContext());
         } else {
-            prefs.attach(activity);
+            plugin.prefs.attach(flutterPluginBinding.getApplicationContext());
         }
     }
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "ycappmessaging");
-        channel.setMethodCallHandler(this);
-        if (prefs == null) {
-            prefs = new Prefs(flutterPluginBinding.getApplicationContext());
-        } else {
-            prefs.attach(flutterPluginBinding.getApplicationContext());
-        }
-    }
-
-    // This static function is optional and equivalent to onAttachedToEngine. It supports the old
-    // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
-    // plugin registration via this function while apps migrate to use the new Android APIs
-    // post-flutter-1.12 via https://flutter.dev/go/android-project-migration.
-    //
-    // It is encouraged to share logic between onAttachedToEngine and registerWith to keep
-    // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
-    // depending on the user's project. onAttachedToEngine or registerWith must both be defined
-    // in the same class.
-    public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "ycappmessaging");
-        channel.setMethodCallHandler(new YcAppMessagingPlugin(registrar.activity()));
+        setup(this, flutterPluginBinding);
     }
 
     @Override
