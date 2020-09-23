@@ -1,6 +1,5 @@
 package com.feser.ycappmessaging;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -28,20 +27,21 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-    /// when the Flutter Engine is detached from the Activity
+    /// when the Flutter Engine is detached from the context
     private MethodChannel channel;
     private Prefs prefs;
-    private Context activity;
+    private Context context;
     private final String TAG = "YcAppMessagingPlugin";
 
 
     private static void setup(YcAppMessagingPlugin plugin, @NonNull FlutterPluginBinding flutterPluginBinding) {
         plugin.channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "ycappmessaging");
         plugin.channel.setMethodCallHandler(plugin);
+        plugin.context = flutterPluginBinding.getApplicationContext()
         if (plugin.prefs == null) {
-            plugin.prefs = new Prefs(flutterPluginBinding.getApplicationContext());
+            plugin.prefs = new Prefs(plugin.context);
         } else {
-            plugin.prefs.attach(flutterPluginBinding.getApplicationContext());
+            plugin.prefs.attach(plugin.context);
         }
     }
 
@@ -55,7 +55,7 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
         switch (methodCall.method) {
             case "subscribeAll":
                 Log.d(TAG, "subscribeAll");
-                SubscribeAllWorker.enqueue(activity);
+                SubscribeAllWorker.enqueue(context);
                 result.success(null);
                 break;
             case "enableFCM":
@@ -64,11 +64,11 @@ public class YcAppMessagingPlugin implements FlutterPlugin, MethodCallHandler {
                 FirebaseMessaging.getInstance()
                         .setAutoInitEnabled(enableFCM);
                 if (enableFCM) {
-                    SubscribeAllWorker.enqueue(activity);
-                    activity.startService(new Intent(activity, CreateInstanceIdService.class));
+                    SubscribeAllWorker.enqueue(context);
+                    context.startService(new Intent(context, CreateInstanceIdService.class));
                     result.success("Token created");
                 } else {
-                    activity.startService(new Intent(activity, DeleteInstanceIdService.class));
+                    context.startService(new Intent(context, DeleteInstanceIdService.class));
                     result.success("No Token");
                 }
                 break;
