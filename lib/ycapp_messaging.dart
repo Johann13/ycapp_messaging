@@ -1,25 +1,38 @@
 import 'dart:async';
 
-import 'package:ycapp_messaging/ycapp_messaging_platform.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:ycapp_foundation/prefs/prefs.dart';
 
 class YMessaging {
-  static Future<String> getToken() async {
-    return YMessagingPlatform.instance.getToken();
+  static FirebaseMessaging _messaging = FirebaseMessaging.instance;
+
+  static Future<String> getToken() {
+    return _messaging.getToken();
   }
 
-  static Future<dynamic> subscribeToTopic(String _channelId) async {
-    return YMessagingPlatform.instance.subscribeToTopic(_channelId);
+  static Future<void> subscribeToTopic(String _channelId) {
+    return _messaging.subscribeToTopic(_channelId);
   }
 
-  static Future<dynamic> unsubscribeFromTopic(String _channelId) async {
-    return YMessagingPlatform.instance.unsubscribeFromTopic(_channelId);
+  static Future<void> unsubscribeFromTopic(String _channelId) {
+    return _messaging.unsubscribeFromTopic(_channelId);
   }
 
-  static Future<dynamic> enableFCM(bool enable) async {
-    return YMessagingPlatform.instance.enableFCM(enable);
+  static Future<void> enableFCM(bool enable) {
+    return _messaging.setAutoInitEnabled(enable);
   }
 
   static Future<void> subscribeAll() async {
-    return YMessagingPlatform.instance.subscribeAll();
+    List<String> creator = await Prefs.getStringList('creator');
+    List<String> youtube = await Prefs.getStringList('youtube');
+    List<String> twitch = await Prefs.getStringList('twitch');
+    await Future.wait([
+      for(String id in creator)
+        subscribeToTopic(id),
+      for(String id in youtube)
+        subscribeToTopic(id),
+      for(String id in twitch)
+        subscribeToTopic(id),
+    ]);
   }
 }
