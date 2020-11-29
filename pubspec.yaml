@@ -12,9 +12,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_messaging: ^8.0.0-dev.5
+  firebase_messaging: ^8.0.0-dev.9
   ycapp_foundation:
-    path: ../ycapp_foundation
+    #  path: ../ycapp_foundation
+    git:
+      url: git://github.com/Johann13/ycapp_foundation.git
 
 dev_dependencies:
   flutter_test:
