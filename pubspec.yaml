@@ -13,14 +13,15 @@ dependencies:
     sdk: flutter
 
   plugin_platform_interface: ^1.0.2
-  firebase_messaging: ^7.0.0
+  firebase_messaging: ^8.0.0-dev.9
   cloud_functions: ^0.6.0
   firebase: ^7.3.0
   http: ^0.12.0+4
 
   ycapp_foundation:
-    git:
-      url: git://github.com/Johann13/ycapp_foundation.git
+    path: ../ycapp_foundation
+    #git:
+    #  url: git://github.com/Johann13/ycapp_foundation.git
 
 dev_dependencies:
   flutter_test:
