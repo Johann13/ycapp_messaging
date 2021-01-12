@@ -1,7 +1,9 @@
 # This is a generated file; do not edit or check into version control.
-ycapp_foundation=/Users/johannfeser/Projects/YcApp/ycapp_foundation/
+ycapp_foundation=/Users/johannfeser/flutter/.pub-cache/git/ycapp_foundation-048408e46a9941287b7702e9f62d1c0d9b019f43/
 cloud_firestore=/Users/johannfeser/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.15.0/
 cloud_firestore_web=/Users/johannfeser/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.3.0/
+cloud_functions=/Users/johannfeser/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions-0.8.0/
+cloud_functions_web=/Users/johannfeser/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions_web-3.1.2/
 firebase_core=/Users/johannfeser/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.6.0/
 firebase_core_web=/Users/johannfeser/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.2.1+2/
 firebase_messaging=/Users/johannfeser/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-8.0.0-dev.12/
